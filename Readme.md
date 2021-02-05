@@ -6,7 +6,7 @@ Default configuration will provision an Oracle Linux 8 VM with the following pac
 * Vim
 * Git
 * Docker + docker-compose
-* Java (Azul Zulu distribution)
+* Java
 * Jenkins
 
 Tested with Oracle Linux 8, but should work with any Red Hat 8 family distributions.
@@ -43,7 +43,7 @@ Or by adding a VagrantFile in ~/.vagrant.d with the following content:
 
 * Clone this project on your Windows host
 
-	git@github.com:maguesse/vagrant-hyperv-ansible.git
+		git@github.com:maguesse/vagrant-hyperv-ansible.git
 
 * Modify Vangrant file for your own needs
 
@@ -85,6 +85,8 @@ Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignore
 	* Install and configure iptables
 * [geerlingguy.docker](https://github.com/geerlingguy/ansible-role-docker)
 	* Install and configure Docker
+* [geerlingguy.java](https://github.com/geerlingguy/ansible-role-java)
+	* Install Java from OS distribution's repositorie
 
 ## TODO
 
