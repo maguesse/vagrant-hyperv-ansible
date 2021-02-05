@@ -6,7 +6,8 @@
       - update-os
       - server-hardening
       - install-dev-packages
-      - install-docker
+      #- install-docker
+      - geerlingguy.docker
       - install-java 
       - geerlingguy.firewall
       - geerlingguy.jenkins

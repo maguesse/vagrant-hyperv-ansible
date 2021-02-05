@@ -26,4 +26,6 @@ limits_configs: [
 
 additional_packages: [ ]
 
+# Docker
+docker_compose_version: 1.28.2
 docker_users: [ "vagrant" ]

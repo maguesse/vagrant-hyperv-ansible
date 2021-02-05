@@ -1,3 +1,4 @@
 ---
 - src: geerlingguy.firewall
 - src: geerlingguy.jenkins
+- src: geerlingguy.docker

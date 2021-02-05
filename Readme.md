@@ -83,6 +83,8 @@ Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignore
 	* Install and configure Jenkins
 * [geerlingguy.firewall](https://github.com/geerlingguy/ansible-role-firewall)
 	* Install and configure iptables
+* [geerlingguy.docker](https://github.com/geerlingguy/ansible-role-docker)
+	* Install and configure Docker
 
 ## TODO
 
