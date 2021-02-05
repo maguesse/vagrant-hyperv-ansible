@@ -1,0 +1,6 @@
+---
+
+__yum_repo_url: http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch
+__yum_gpg_key: https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
+__yum_repo_name: AdoptOpenJDK
+__yum_import_key: false

@@ -1,0 +1,25 @@
+---
+
+- name: Import GPG Key
+  rpm_key:
+    key: "{{ yum_gpg_key }}"
+    state: present
+  when: yum_import_key is defined and yum_import_key
+
+- name: Set fact (repo name)
+  set_fact:
+    yum_repo_id: "{{ yum_repo_name  | replace(' ', '-')}}"
+  when: yum_repo_name is defined
+
+- name: Add Yum Repository
+  template:
+    src: yum.repo.j2
+    dest: /etc/yum.repos.d/{{ yum_repo_id | lower }}.repo
+    mode: 0644
+  when: yum_repo_name is defined and yum_repo_name
+
+- name: Install RPM Repository
+  dnf:
+    name: "{{ yum_repo_package }}"
+    state: present
+  when: yum_repo_package is defined and yum_repo_package

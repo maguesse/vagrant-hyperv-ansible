@@ -1,0 +1,8 @@
+# Redhat Specific
+__yum_gpg_key: https://www.azul.com/files/0xB1998361219BD9C9.txt
+__yum_repo_package: https://cdn.azul.com/zulu/bin/zulu-repo-1.0.0-1.noarch.rpm
+__yum_import_key: false
+
+# Debian Specific
+__apt_gpg_key: "0xB1998361219BD9C9"
+__apt_repo_package: https://cdn.azul.com/zulu/bin/zulu-repo_1.0.0-2_all.deb

@@ -1,0 +1,14 @@
+---
+- name: Include AdoptOpenJDK specific variables
+  include_vars: AdoptOpenJDK.yaml
+
+- name: set facts
+  set_fact:
+    yum_repo_name: "{{ __yum_repo_name }}"
+    yum_repo_url: "{{ __yum_repo_url }}"
+    yum_gpg_key: "{{ __yum_gpg_key }}"
+    yum_import_key: "{{ __yum_import_key }}"
+    yum_repo_package:
+
+- name: Setup Yum
+  include_tasks: setup-yum.yaml

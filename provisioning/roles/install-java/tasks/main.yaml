@@ -1,15 +1,15 @@
 ---
 
-- name: Setup Java prerequisites for RHEL like distributions
-  include_tasks: redhat.yaml
-  when: ansible_facts['os_family']|lower == 'redhat'
+- name: Setup Java prerequisties for {{ ansible_os_family }}
+  include_tasks: setup-Redhat.yaml
+  when: ansible_os_family == 'RedHat' or
+        ansible_os_family == 'Suse'
 
-- name: Setup Java prerequisites for Debian like distributions
-  include_tasks: debian.yaml
-  when: ansible_facts['os_family']|lower == 'debian'
+- name: Setup Java prerequisties for {{ ansible_os_family }}
+  include_tasks: setup-Debian.yaml
+  when: ansible_os_family == 'Debian'
 
-- name: Install Java {{ java_package }}
+- name: Ensure Java is installed
   package: 
-    name: "{{ java_package }}"
+    name: "{{ java_packages }}"
     state: "present"
-  

@@ -1,0 +1,20 @@
+---
+- name: Include Azul specific variables
+  include_vars: Azul.yaml
+
+- name: set facts
+  set_fact:
+    yum_repo_name: 
+    yum_repo_url:
+    yum_gpg_key: "{{ __yum_gpg_key }}"
+    yum_import_key: "{{ __yum_import_key }}"
+    yum_repo_package: "{{ __yum_repo_package }}"
+
+- name: Set facts
+  set_fact:
+    yum_import_key: true
+  when: ansible_os_family == 'Suse' or
+        ansible_distribution == 'OracleLinux'
+
+- name: Setup Yum
+  include_tasks: setup-yum.yaml

@@ -1,0 +1,9 @@
+---
+
+- name: Setup Azul repository
+  include_tasks: setup-yum-Azul.yaml
+  when: '"Azul" in install_repositories'
+
+- name: Setup AdoptOpenJDK repository
+  include_tasks: setup-yum-AdoptOpenJDK.yaml
+  when: '"AdoptOpenJDK" in install_repositories'

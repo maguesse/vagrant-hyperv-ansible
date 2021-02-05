@@ -1,6 +1,10 @@
 # Ansible Role : install-java
 
-Installs Azul Zulu Java.
+Installs alternative Java distributions.
+
+Currenly supported:
+- Azul Zulu
+- AdoptOpenJDK
 
 ## Requirements
 
@@ -11,16 +15,14 @@ None
 Available variables are listed below, along with default values (see `default/main.yaml`)
 
 
-    java_package: zulu-8
+    java_packages: []
 
 
 The Java version to be installed.
 
-    java_yum_gpg_key: http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
-    java_yum_repo_name: /etc/yum.repos.d/zulu.repo
-    java_yum_repo_url:  http://repos.azulsystems.com/rhel/zulu.repo
+    install_repositories: []
 
-(Used only on RedHat family)
+Alternate repositories to install.
 
 ## Dependencies
 
@@ -36,8 +38,10 @@ None
 
 *Inside `vars/main.yaml`*:
 
-    java_package: zulu-11
+    java_packages: zulu11
+    install_repositories: [ "Azul" ]
 
 ## TODO
 
     - Support other Java distributions
+    - Install repositories only for selected java_packages
