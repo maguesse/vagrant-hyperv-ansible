@@ -1,3 +1,4 @@
+# Firewall configuration (see https://github.com/geerlingguy/ansible-role-firewall)
 firewall_disable_firewalld: true
 firewall_disable_ufw: true
 firewall_allowed_tcp_ports :
@@ -12,8 +13,11 @@ firewall_allowed_tcp_ports :
   - '9000'
   - '9889'
 
+# Firewall configuration (see https://github.com/geerlingguy/ansible-role-firewall)
+docker_compose_version: 1.28.2
+docker_users: [ "vagrant" ]
 
-
+# OS Configuration (see roles/update-os/Readme.md)
 sysctl_config: { vm.max_map_count: 262144, fs.file-max: 250000, kernel.shmmax: 629145600 }
 
 
@@ -24,8 +28,5 @@ limits_configs: [
   { domain: "vagrant", type: "hard", item: "nproc",  value: "65535" }
 ]
 
+# Additional packages installation (see roles/install-additional-packages/Readme.md)
 additional_packages: [ ]
-
-# Docker
-docker_compose_version: 1.28.2
-docker_users: [ "vagrant" ]
