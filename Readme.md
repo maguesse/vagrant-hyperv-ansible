@@ -77,6 +77,12 @@ Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignore
 * Modify `provisioning/vars/main.yaml` to match your needs.
 	* Check each module's Reamde.md to see supported variables and their default values.
 
+## Dependencies
+
+* [geerlingguy.jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
+	* Install and configure Jenkins
+* [geerlingguy.firewall](https://github.com/geerlingguy/ansible-role-firewall)
+	* Install and configure iptables
 
 ## TODO
 
