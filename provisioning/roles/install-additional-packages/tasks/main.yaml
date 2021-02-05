@@ -1,0 +1,7 @@
+---
+
+- name: Install additonal packages
+  package:
+    name: "{{ additional_packages }} "
+    state: "present"
+  when: additional_packages | length > 0

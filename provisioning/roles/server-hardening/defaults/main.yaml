@@ -1,0 +1,8 @@
+---
+
+ssh_disable_root_access: true
+# Warning: disable password authentication with care
+# If you do so, ensure:
+#   - to have copied the SSH key in the target
+#   - to have access to the SSH on host
+ssh_disable_password_authentication: false

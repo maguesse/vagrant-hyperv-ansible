@@ -1,0 +1,13 @@
+---
+
+java_package: zulu-8
+
+# Redhat Specific
+java_yum_gpg_key: http://repos.azulsystems.com/RPM-GPG-KEY-azulsystems
+java_yum_repo_name: /etc/yum.repos.d/zulu.repo
+java_yum_repo_url:  http://repos.azulsystems.com/rhel/zulu.repo
+
+# Debian Specific
+java_apt_gpg_key:
+java_apt_repo_name:
+java_apt_repo_url:

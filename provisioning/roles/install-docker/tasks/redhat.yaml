@@ -1,0 +1,12 @@
+---
+
+- name: Install Docker prerequisites
+  dnf:
+    name:
+      - ca-certificates 
+      - curl
+      - dnf-plugins-core
+    update_cache: yes
+
+- name: Install Docker Repository
+  command: "dnf config-manager --add-repo {{ docker_yum_repo_url }}"

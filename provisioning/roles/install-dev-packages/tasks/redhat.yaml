@@ -1,0 +1,9 @@
+---
+
+- name: Install dev tools
+  package:
+    name:
+      - vim
+      - wget
+      - git 
+    update_cache: yes

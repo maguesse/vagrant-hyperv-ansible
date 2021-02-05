@@ -1,0 +1,33 @@
+---
+
+  - name: Get docker compose version
+    shell: curl -s {{ docker_compose_release_url }} | awk '/tag_name/ {print $2}' | cut -d\" -f2
+    args:
+      warn: false
+    when: docker_compose_version == "latest"
+    register: docker_compose_version
+
+  - name: Cleanup docker compose version
+    set_fact:
+      docker_compose_version: "{{ docker_compose_version.stdout }}"
+      when: docker_compose_version.stdout | length > 0
+
+  - name: Check current docker-compose version.
+    command: docker-compose --version
+    register: docker_compose_current_version
+    changed_when: false
+    failed_when: false
+
+  - name: Delete existing docker-compose version if it's different.
+    file:
+      path: "{{ docker_compose_path }}"
+      state: absent
+    when: >
+      docker_compose_current_version.stdout is defined
+      and docker_compose_version not in docker_compose_current_version.stdout
+
+  - name: Download Docker-compose {{ docker_compose_version }}
+    get_url:
+      url: "{{ docker_compose_url}}/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture}}"
+      dest: "{{ docker_compose_path }}"
+      mode: 0755

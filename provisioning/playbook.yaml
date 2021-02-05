@@ -1,0 +1,13 @@
+  - hosts: all
+    become: yes
+    vars_files:
+      - vars/main.yaml
+    roles:
+      - update-os
+      - server-hardening
+      - install-dev-packages
+      - install-docker
+      - install-java 
+      - geerlingguy.firewall
+      - geerlingguy.jenkins
+      - install-additional-packages

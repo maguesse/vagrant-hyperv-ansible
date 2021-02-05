@@ -1,0 +1,36 @@
+---
+  # Update target OS with customized settings
+
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
+  - name: Set Locale to {{ locale_language }}
+    command: localectl set-locale LANG={{ locale_language }}
+
+  - name: Set keyboard {{ locale_keyboard }}
+    command: localectl set-keymap {{ locale_keyboard }}
+
+  - name: Set Local RTC to {{ datetime_local_rtc }}
+    command: timedatectl set-local-rtc {{ datetime_local_rtc }}
+
+  - name: Set timezone to {{ datetime_timezone }}
+    command: timedatectl set-timezone {{ datetime_timezone }}
+
+  - name: Update users limits
+    pam_limits:
+      domain: "{{ item.domain }}"
+      limit_type: "{{ item.type }}"
+      limit_item: "{{ item.item }}"
+      value: "{{ item.value }}"
+    loop: "{{ limits_configs | flatten(levels=1)}}"
+
+  - name: Change various sysctl-settings
+    sysctl:
+      name: '{{ item.key }}'
+      value: '{{ item.value }}'
+      sysctl_set: yes
+      state: present
+      reload: yes
+      ignoreerrors: yes
+    loop: '{{ sysctl_config | dict2items }}'

@@ -1,0 +1,15 @@
+---
+
+# Locale configuration
+locale_language: en_US.UTF-8
+locale_keyboard: fr
+
+# Datetime configuration
+datetime_timezone: Europe/Paris
+datetime_local_rtc: 0
+
+# Sysctl config
+sysctl_config: {}
+
+# Users limits config
+limits_configs: []

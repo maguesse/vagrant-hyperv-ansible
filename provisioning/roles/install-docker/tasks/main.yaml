@@ -1,0 +1,32 @@
+---
+
+- name: Setup Docker prerequisites for RHEL like distributions
+  include_tasks: redhat.yaml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Setup Docker prerequisites for Debian like distributions
+  include_tasks: debian.yaml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install Docker
+  package:
+    name: "{{ docker_package }}"
+    state: "{{ docker_package_state }}"
+  notify: restart docker
+
+- name: Install Docker Compose
+  include_tasks: docker-compose.yaml
+  when: docker_compose_install == true
+
+- name: Ensure Docker is started and enabled at boot
+  service:
+    name: docker
+    state: "{{ docker_service_state }}"
+    enabled: "{{ docker_service_enabled }}"
+
+- name: Ensure handlers are notified now to avoid firewall conflicts.
+  meta: flush_handlers
+    
+- name: Add users to docker group
+  import_tasks: docker-users.yaml
+  when: docker_users | length > 0
