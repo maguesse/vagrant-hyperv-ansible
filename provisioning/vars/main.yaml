@@ -20,7 +20,6 @@ docker_users: [ "vagrant" ]
 # OS Configuration (see roles/update-os/Readme.md)
 sysctl_config: { vm.max_map_count: 262144, fs.file-max: 250000, kernel.shmmax: 629145600 }
 
-
 limits_configs: [
   { domain: "vagrant", type: "soft", item: "nofile", value: "250000" },
   { domain: "vagrant", type: "hard", item: "nofile", value: "250000" },
@@ -34,3 +33,40 @@ additional_packages: [ "xorg-x11-xauth", "xorg-x11-utils", "xorg-x11-apps" ]
 
 # Java configuration
 java_packages: java-1.8.0-openjdk
+
+# Jenkins configuration
+jenkins_hostname: "{{ ansible_hostname }}.{{ ansible_domain }}"
+jenkins_plugins:
+  - ansicolor
+  - ant
+  - antisamy-markup-formatter
+  - authorize-project
+  - blueocean
+  - bouncycastle-api
+  - build-timeout
+  - cloudbees-folder
+  - command-launcher
+  - configuration-as-code
+  - credentials-binding
+  - dashboard-view
+  - email-ext
+  - git
+  - github-branch-source
+  - github
+  - gitlab-plugin
+  - gradle
+  - jdk-tool
+  - ldap
+  - mailer
+  - matrix-auth
+  - pam-auth
+  - pipeline-github-lib
+  - pipeline-stage-view
+  - pipeline-utility-steps
+  - simple-theme-plugin
+  - ssh-slaves
+  - timestamper
+  - view-job-filters
+  - workflow-aggregator
+  - workflow-basic-steps
+  - ws-cleanup
