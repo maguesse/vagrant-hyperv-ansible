@@ -1,5 +1,8 @@
 ---
 
-- name: Enable additional repositories
-  dnf:
+
+- name: Install packages
+  package:
+    name: "{{ additional_packages }} "
     enablerepo: "{{ additional_repos }}"
+    state: present

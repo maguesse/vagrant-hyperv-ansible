@@ -13,6 +13,12 @@ Available variables are listed below, along with default values (see `default/ma
 
     additional_packages: []
 
+Additional packages to be installed.
+
+    additional_repos: []
+
+Additonal repositories to be enabled.
+
 
 ## Dependencies
 
@@ -31,3 +37,6 @@ None
     additional_packages: 
         - firefox
         - emacs
+        - x11-org-apps
+
+    additonal_repos: [ "ol8_codeready_builder" ]

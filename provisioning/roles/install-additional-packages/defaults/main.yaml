@@ -1,5 +1,7 @@
 --- 
 
-additional_packages: []
+# Set additional_packages if you would like to install them (see defaults in `vars` directory).
+#additional_packages: []
 
-additional_repos: []
+# Eanable additional_repos if it's needed for additional packages (see defaults in `vars` directory).
+#additional_repos: []
