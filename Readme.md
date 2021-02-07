@@ -18,7 +18,7 @@ Support for Debian family distributions is not finalized.
 * Current version is using rsync to share folder between host and guest. 
 	* Don't use it if you need to share large amount of data since it will copy the files from host to guest. So it will consume space on you VM filesystem, but it may also delay the VM startup duration by several minutes.
 	* Modifications on host folders are not automatically synced to the guest.
-		* Use `rsync` or `rsync-auto`, cf. [Rsync](https://www.vagrantup.com/docs/synced-folders/rsync")
+		* Use `rsync` or `rsync-auto`, cf. [Rsync](https://www.vagrantup.com/docs/synced-folders/rsync)
 	* Prefer a sharing mechanism like SMB
 
 ## Prerequisities
