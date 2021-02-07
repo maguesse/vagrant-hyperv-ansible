@@ -27,10 +27,14 @@
 
   - name: Change various sysctl-settings
     sysctl:
-      name: '{{ item.key }}'
-      value: '{{ item.value }}'
+      name: "{{ item.key }}"
+      value: "{{ item.value }}"
       sysctl_set: yes
       state: present
       reload: yes
       ignoreerrors: yes
-    loop: '{{ sysctl_config | dict2items }}'
+    loop: "{{ sysctl_config | dict2items }}"
+    
+  - name: Update all {{ ansible_os_family }} packages to their latest version
+    include_tasks: "setup-{{ ansible_os_family }}.yaml"
+    when: ansible_os_family in [ "RedHat", "Debian" ]
