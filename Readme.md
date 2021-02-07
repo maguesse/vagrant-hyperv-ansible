@@ -13,10 +13,17 @@ Tested with Oracle Linux 8, but should work with any Red Hat 8 family distributi
 
 Support for Debian family distributions is not finalized.
 
+## Notes
+
+* Current version is using rsync to share folder between host and guest. 
+	* Don't use it if you need to share large amount of data since it will copy the files from host to guest. So it will consume space on you VM filesystem, but it may also delay the VM startup duration by several minutes.
+	* Modifications on host folders are not automatically synced to the guest.
+		* Use `rsync` or `rsync-auto`, cf. [Rsync](https://www.vagrantup.com/docs/synced-folders/rsync")
+	* Prefer a sharing mechanism like SMB
 
 ## Prerequisities
 
-* Vagrant (obviously). Tested on Vagrant  2.2.11
+* Vagrant. Tested on Vagrant  2.2.11
 * Hyper-V features enabled on Windows Host
 
 ### Set Hyper-V as default provider
@@ -74,6 +81,20 @@ For example: `sagvm1-box.eur.ad.sag`
 
 Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignored.
 
+* Update the `sync_folders` list for your needs
+
+		synced_folders = [
+			{
+				:hostpath => ".",             # Folder path on the host
+				:guestpath => "/vagrant",     # Folder path on the guest
+				:type => "rsync",             # Type of sync folder
+				:disabled => false,           # If true, the sync folder won't be setup
+				:opts => {                    # Additonal options. See each sync_folder type for available options
+				:rsync__exclude => ".git"
+				}
+			}
+		]
+
 * Modify `provisioning/vars/main.yaml` to match your needs.
 	* Check each module's Reamde.md to see supported variables and their default values.
 
@@ -95,6 +116,7 @@ Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignore
 	* Current rsync implementation does not support synchronization from the guest.
 * Inject custom SSH keys
 * Allocate static IP to guest machines
+* Externalize boxes and syncfolders configurations
 
 ## Disclaimer
 
