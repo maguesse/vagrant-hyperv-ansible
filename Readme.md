@@ -28,7 +28,7 @@ Support for Debian family distributions is not finalized.
 
 ### Set Hyper-V as default provider
 
-Either by settings the `VAGRANT_DEFAULT_PROVIDER` environement variable. 
+Either by settings the `VAGRANT_DEFAULT_PROVIDER` environment variable. 
 
 For example, using Powershell
 
@@ -52,51 +52,54 @@ Or by adding a VagrantFile in ~/.vagrant.d with the following content:
 
 		git@github.com:maguesse/vagrant-hyperv-ansible.git
 
-* Modify Vangrant file for your own needs
+* Modify configuration.yaml file for your own needs. See [Configuration variables](#configuration-variables) below.
 
-		DOMAIN=".eur.ad.sag"
-		NAME_PREFIX="sagvm"
-		VM_CATEGORY="box"
+* Modify [provisioning/vars/main.yaml](provisioning/vars/main.yaml) to match your needs.
+	* Check each module's `Readme.md` to see supported variables and their default values.
 
-This will generate boxes with the following naming pattern `<NAME_PREFIX><idx>-<VM_CATEGORY><DOMAIN>`.
-For example: `sagvm1-box.eur.ad.sag`
+## Configuration variables
 
-* Update the `boxes` list, especially `cpus` and `memory` values.
+Available variables are listed below, along with default values (see [configuration.yaml](./configuration.yaml))
 
-		boxes = [ 
-		{ :name => NAME_PREFIX + "1-" + VM_CATEGORY,
-			:eth1 => NETWORK + "2",
-			:primary => true,
-			:workdir => "work/vm1" + "-" + VM_CATEGORY,
-			:memory => 5120 ,
-			:cpus => 2,
-			:autostart => true,
-			:fport => [{
-				:guest => 9000, 
-				:host => 9000}]
-		},
+	box: "generic/oracle8"
 
-		]
+The vagrant base boxe
+
+  forward_agent: true
+  forward_x11: true
+
+Wether to enable forwarding between host and guest.
+
+	domain="local.domain"
+	hostname_prefix="sagvm"
+	vm_category="box"
+
+This will generate boxes with the following naming pattern `${hostname_prefix}${idx}-${vm_category}.${domain}`.
+For example: `sagvm1-box.local.domain`
 
 
-Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignored.
+	boxes:
+		-
+			memory: 5120
+			cpu: 2
+			opts:
+				primary: true
+				autostart: true
 
-* Update the `sync_folders` list for your needs
+Configures new machines. Parameters are self explanatory.
 
-		synced_folders = [
-			{
-				:hostpath => ".",             # Folder path on the host
-				:guestpath => "/vagrant",     # Folder path on the guest
-				:type => "rsync",             # Type of sync folder
-				:disabled => false,           # If true, the sync folder won't be setup
-				:opts => {                    # Additonal options. See each sync_folder type for available options
-				:rsync__exclude => ".git"
-				}
-			}
-		]
+	folders:
+		-
+			hostpath: "."
+			guestpath: "/vagrant"
+			type: "rsync"
+			disabled: false
+			opts:
+				rsync__exclude:
+					- ".git"
 
-* Modify `provisioning/vars/main.yaml` to match your needs.
-	* Check each module's Reamde.md to see supported variables and their default values.
+Configures synced folders between host and guest.
+`opts` depend on synchronization implementation. Check Vagrant document for available options.
 
 ## Dependencies
 
@@ -116,7 +119,6 @@ Note: `eth1`, `fport` & `workdir` are currently not supported and will be ignore
 	* Current rsync implementation does not support synchronization from the guest.
 * Inject custom SSH keys
 * Allocate static IP to guest machines
-* Externalize boxes and syncfolders configurations
 
 ## Disclaimer
 

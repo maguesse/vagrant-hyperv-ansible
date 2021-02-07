@@ -1,0 +1,31 @@
+---
+  box: "generic/oracle8"
+  forward_agent: true
+  forward_x11: true
+  domain: local.domain
+  hostname_prefix: sagvm
+  vm_category: box
+  network:                    # Network configuration (not yet supported)
+    ip_prefix: "192.168.3"
+    netmask: "255.255.255.0"
+
+
+  boxes:                      # Boxes
+    -
+      memory: 5120            # Number of megabytes allocated to VM at startup
+      cpu: 2                  # Number of CPUs allocated
+      opts:                   # Additional options
+        primary: true         # (Multiple Machine) Is this the default VM?
+        autostart: true       # (Multiple Machine) Should be autostarted with vagrant up
+
+  folders:                    # Synced folders
+    -
+      hostpath: "."           # Folder path on the host
+      guestpath: "/vagrant"   # Folder path on the guest
+      type: "rsync"           # Type of sync folder
+      disabled: false         # If true, the sync folder won't be setup
+      opts:                   # Additonal options. See each sync_folder 
+        rsync__exclude:
+          - ".git"
+
+    
