@@ -1,5 +1,10 @@
 ---
 
+- name: Enable additional {{ ansible_os_family }} repositories
+  include_tasks: setup-{{ ansible_os_family }}.yaml
+  when: (additional_repos is defined) and
+        (additional_repos | length > 0)
+
 - name: Install additonal packages
   package:
     name: "{{ additional_packages }} "

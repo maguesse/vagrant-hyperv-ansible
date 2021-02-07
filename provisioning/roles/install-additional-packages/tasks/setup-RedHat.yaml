@@ -1,0 +1,5 @@
+---
+
+- name: Enable additional repositories
+  dnf:
+    enablerepo: "{{ additional_repos }}"

@@ -29,7 +29,8 @@ limits_configs: [
 ]
 
 # Additional packages installation (see roles/install-additional-packages/Readme.md)
-additional_packages: [ ]
+additional_repos: [ "ol8_codeready_builder"]
+additional_packages: [ "xorg-x11-xauth", "xorg-x11-utils", "xorg-x11-apps" ]
 
 # Java configuration
 java_packages: java-1.8.0-openjdk
