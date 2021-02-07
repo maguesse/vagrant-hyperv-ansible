@@ -1,9 +1,10 @@
 ---
 
-- name: Install dev tools
+- name: Install packages
   package:
     name:
       - vim
       - wget
-      - git 
+      - git
+      - "@fonts"
     update_cache: yes

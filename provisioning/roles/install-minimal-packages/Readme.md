@@ -1,6 +1,6 @@
-# Ansible Role : install-dev-packages
+# Ansible Role : install-minimal-packages
 
-Install usefull package for development:
+Install minimal packages:
  - vim
  - wget
  - git
@@ -26,7 +26,7 @@ None
     vars_files:
         - vars/main.yml
     roles:
-        - install-dev-packages
+        - install-minimal-packages
 
 *Inside `vars/main.yaml`*:
 

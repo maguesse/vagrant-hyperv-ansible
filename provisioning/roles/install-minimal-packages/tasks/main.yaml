@@ -1,9 +1,9 @@
 ---
 
-- name: Install dev tools for RHEL like distributions
+- name: Install minimal pacakges for RHEL like distributions
   include_tasks: redhat.yaml
   when: ansible_facts['os_family']|lower == 'redhat'
 
-- name: Install dev tools for Debian like distributions
+- name: Install minimal pacakges for Debian like distributions
   include_tasks: debian.yaml
   when: ansible_facts['os_family']|lower == 'debian'

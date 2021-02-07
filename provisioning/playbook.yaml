@@ -5,7 +5,7 @@
     roles:
       - update-os
       - server-hardening
-      - install-dev-packages
+      - install-minimal-packages
       - geerlingguy.docker
       - geerlingguy.java
       - geerlingguy.firewall
