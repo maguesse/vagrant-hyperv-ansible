@@ -1,0 +1,7 @@
+---
+
+__minimal_packages: 
+  - vim
+  - wget
+  - git
+  - "@fonts"

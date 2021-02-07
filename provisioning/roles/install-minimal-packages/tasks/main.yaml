@@ -1,9 +1,7 @@
 ---
 
-- name: Install minimal pacakges for RHEL like distributions
-  include_tasks: redhat.yaml
-  when: ansible_facts['os_family']|lower == 'redhat'
+- name: Load OS Specific vars for {{ ansible_os_family }}
+  include_vars: "{{ ansible_os_family }}.yaml"
 
-- name: Install minimal pacakges for Debian like distributions
-  include_tasks: debian.yaml
-  when: ansible_facts['os_family']|lower == 'debian'
+- name: Install minimal packages for {{ ansible_os_family }} distribution
+  include_tasks: setup-{{ ansible_os_family }}.yaml

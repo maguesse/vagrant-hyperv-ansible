@@ -1,0 +1,7 @@
+---
+
+- name: Install minimal packages set
+  apt:
+    name: "{{ __minimal_packages }}"
+    state: latest
+    update_cache: yes
