@@ -5,11 +5,14 @@
   domain: local.domain
   hostname_prefix: sagvm
   vm_category: box
-  network:                    # Network configuration (not yet supported)
-    ip_prefix: "192.168.3"
-    netmask: "255.255.255.0"
 
-
+  linked_clone: true          # Use differencing disk instead of cloning entire VHD
+  networks:                    # Network configuration (not yet supported)
+    - 
+      prefix: "192.168.3.0/24"
+      type: private
+      brige: "Hyper-V Host-Only #1"
+      
   boxes:                      # Boxes
     -
       memory: 5120            # Number of megabytes allocated to VM at startup
@@ -28,4 +31,20 @@
         rsync__exclude:
           - ".git"
 
-    
+    -
+      hostpath: "C:/Users/sagfagm/OneDrive - Software AG/Documents/02_SAG/99_Images"
+      guestpath: "/media/ImagesWm"
+      type: "rsync"
+      disabled: false
+      opts:
+        rsync__exclude:
+          - ".git"
+
+    -
+      hostpath: "C:/Users/sagfagm/OneDrive - Software AG/Documents/02_SAG/98_Licenses"
+      guestpath: "/media/Licenses"
+      type: "rsync"
+      disabled: false
+      opts:
+        rsync__exclude:
+          - ".git"

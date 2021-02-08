@@ -3,6 +3,8 @@
 
 require 'yaml'
 
+Vagrant.require_version '>= 2.1.0'
+
 VAGRANTFILE_API_VERSION ||= "2"
 confDir = $config ||= File.expand_path(File.dirname(__FILE__))
 
