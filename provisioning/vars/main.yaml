@@ -36,37 +36,37 @@ java_packages: java-1.8.0-openjdk
 
 # Jenkins configuration
 jenkins_hostname: "{{ ansible_hostname }}.{{ ansible_domain }}"
-jenkins_plugins:
-  - ansicolor
-  - ant
-  - antisamy-markup-formatter
-  - authorize-project
-  - blueocean
-  - bouncycastle-api
-  - build-timeout
-  - cloudbees-folder
-  - command-launcher
-  - configuration-as-code
-  - credentials-binding
-  - dashboard-view
-  - email-ext
-  - git
-  - github-branch-source
-  - github
-  - gitlab-plugin
-  - gradle
-  - jdk-tool
-  - ldap
-  - mailer
-  - matrix-auth
-  - pam-auth
-  - pipeline-github-lib
-  - pipeline-stage-view
-  - pipeline-utility-steps
-  - simple-theme-plugin
-  - ssh-slaves
-  - timestamper
-  - view-job-filters
-  - workflow-aggregator
-  - workflow-basic-steps
-  - ws-cleanup
+jenkins_plugins:                # Plugin name
+  - ansicolor                   # AnsiColor
+  - ant                         # Ant Plugin
+  - antisamy-markup-formatter   # OWASP Markup Formatter Plugin
+  - authorize-project           # Authorize Project
+  - blueocean                   # Blue Ocean
+  - bouncycastle-api            # bouncycastle API Plugin
+  - build-timeout               # Build Timeout
+  - cloudbees-folder            # Folders Plugin
+  - command-launcher            # Command Agent Launcher Plugin
+  - configuration-as-code       # Configuration as Code Plugin
+  - credentials-binding         # Credentials Binding Plugin
+  - dashboard-view              # Dashboard View
+  - email-ext                   # Email Extension Plugin
+  - git                         # Git plugin
+  - github-branch-source        # GitHub Branch Source Plugin
+  - github                      # GitHub plugin
+  - gitlab-plugin               # GitLab Plugin
+  - gradle                      # Gradle Plugin
+  - jdk-tool                    # Oracle Java SE Development Kit Installer Plugin
+  - ldap                        # LDAP Plugin
+  - mailer                      # Mailer Plugin
+  - matrix-auth                 # Matrix Authorization Strategy Plugin
+  - pam-auth                    # PAM Authentication plugin
+  - pipeline-github-lib         # Pipeline: GitHub Groovy Libraries
+  - pipeline-stage-view         # Pipeline: Stage View Plugin
+  - pipeline-utility-steps      # Pipeline Utility Steps
+  - simple-theme-plugin         # Simple Theme Plugin
+  - ssh-slaves                  # SSH Build Agents plugin
+  - timestamper                 # Timestamper
+  - view-job-filters            # View Job Filters
+  - workflow-aggregator         # Pipeline
+  - workflow-basic-steps        # Pipeline: Basic Steps
+  - ws-cleanup                  # Workspace Cleanup Plugin
