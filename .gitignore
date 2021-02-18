@@ -1,3 +1,4 @@
+resources/ansible_facts.json
 ### Vagrant ###
 # General
 .vagrant/
