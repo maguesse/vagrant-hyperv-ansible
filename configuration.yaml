@@ -15,7 +15,7 @@
       
   boxes:                      # Boxes
     -
-      memory: 5120            # Number of megabytes allocated to VM at startup
+      memory: 12288           # Number of megabytes allocated to VM at startup
       cpu: 2                  # Number of CPUs allocated
       opts:                   # Additional options
         primary: true         # (Multiple Machine) Is this the default VM?
