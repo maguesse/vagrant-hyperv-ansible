@@ -7,16 +7,21 @@
   vm_category: box
 
   linked_clone: true          # Use differencing disk instead of cloning entire VHD
+  enable_virtualization_extensions: true
   networks:                    # Network configuration (not yet supported)
-    - 
+    -
       prefix: "192.168.3.0/24"
-      type: private
-      brige: "Hyper-V Host-Only #1"
-      
+      type: public_network
+      bridge: "Default Switch"
+    -
+      prefix: "192.168.3.0/24"
+      type: private_network
+      bridge: "Hyper-V Host-Only #1"
+
   boxes:                      # Boxes
     -
-      memory: 12288           # Number of megabytes allocated to VM at startup
-      cpu: 2                  # Number of CPUs allocated
+      memory: 16384           # Number of megabytes allocated to VM at startup
+      cpu: 4                  # Number of CPUs allocated
       opts:                   # Additional options
         primary: true         # (Multiple Machine) Is this the default VM?
         autostart: true       # (Multiple Machine) Should be autostarted with vagrant up
@@ -27,7 +32,7 @@
       guestpath: "/vagrant"   # Folder path on the guest
       type: "rsync"           # Type of sync folder
       disabled: false         # If true, the sync folder won't be setup
-      opts:                   # Additonal options. See each sync_folder 
+      opts:                   # Additonal options. See each sync_folder
         rsync__exclude:
           - ".git"
 
@@ -35,7 +40,7 @@
       hostpath: "C:/Users/sagfagm/OneDrive - Software AG/Documents/02_SAG/99_Images"
       guestpath: "/media/ImagesWm"
       type: "rsync"
-      disabled: false
+      disabled: true
       opts:
         rsync__exclude:
           - ".git"
@@ -44,7 +49,20 @@
       hostpath: "C:/Users/sagfagm/OneDrive - Software AG/Documents/02_SAG/98_Licenses"
       guestpath: "/media/Licenses"
       type: "rsync"
-      disabled: false
+      disabled: true
       opts:
         rsync__exclude:
           - ".git"
+
+    - hostpath: "C:/Users/sagfagm/VMShareSMB"
+      guestpath: "/mnt/VMShare"
+      type: "smb"
+      disabled: true
+      opts:
+        smb_username: "vagrant"
+        smb_password: "vagrant"
+#    -
+#      hostpath: "C:/Users/sagfagm/VMShare"
+#      guestpath: "/media/VMShare"
+#      type: "smb"
+#      disabled: false

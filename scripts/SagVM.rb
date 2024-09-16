@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'ipaddr'
 
 class SagVM
@@ -18,7 +20,7 @@ class SagVM
   end
 
   def SagVM.configure(config, settings)
-    
+
     # WIP: Do not uncomment
     # config.trigger.before :up do |trigger|
     #   trigger.info = "Creating new Hyper-V switches if it does not exists"
@@ -26,8 +28,8 @@ class SagVM
     #   settings['networks'].each do |network|
     #     base, cidr, gateway = SagVM.convert_ip_to(network['base'], network['netmask'])
     #     trigger.run = {
-    #       privileged: "true", 
-    #       powershell_elevated_interactive: "true", 
+    #       privileged: "true",
+    #       powershell_elevated_interactive: "true",
     #       path: "./scripts/create-privatenetwork-switch.ps1",
     #       # args: ['-VMSwitch', 'private_network',
     #       #         '-NatName', 'NatNetwork',
@@ -44,7 +46,7 @@ class SagVM
     # Enable X11 forwarding.
     config.ssh.forward_agent = settings['forward_agent'] ||= true
     config.ssh.forward_x11 = settings['forward_x11'] ||= true
-        
+
     # Attach synced folders
     if settings.include? 'folders'
       settings['folders'].each do |folder|
@@ -71,12 +73,13 @@ class SagVM
         # Attach Network interface to the VM
         machine.vm.network "public_network", bridge: "Default Switch"
         # WIP: Do not uncomment
-        # settings['networks'].each_with_index do |network, index|
-        #   puts network
-        #   machine.vm.network "private_network", bridge: network['bridge']
-        # end
+        #settings['networks'].each_with_index do |network, index|
+        #  puts network
+        #  machine.vm.network network['type'], bridge: network['bridge']
+        #end
         machine.vm.provider "hyperv" do |h|
           h.linked_clone = box['linked_clone'] ||= false
+          h.enable_virtualization_extensions = box['enable_virtualization_extensions'] ||= false
           h.memory = box['memory']
           h.maxmemory  = box['memory']
           h.cpus = box['cpu']
@@ -90,10 +93,10 @@ class SagVM
         machine.vm.provision "ansible_local" do |ansible|
           ansible.verbose = false
           ansible.playbook = "provisioning/playbook.yaml"
-          ansible.galaxy_role_file = "requirements.yml" 
-          ansible.galaxy_roles_path = "galaxy_roles" 
+          ansible.galaxy_role_file = "requirements.yml"
+          ansible.galaxy_roles_path = "galaxy_roles"
         end
       end
-    end 
+    end
   end
 end
